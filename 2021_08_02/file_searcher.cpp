@@ -9,9 +9,9 @@ using namespace std;
 struct file {
     string name;
     string extension;
-    bool perceivedBybOs;
-    file(string name, string extension) : name(name), extension(extension){
-        this->perceivedBybOs = false;
+    bool perceivedByOs;
+    file(string _name, string _extension) : name(_name), extension(_extension){
+        
     };
 };
 
@@ -20,11 +20,11 @@ vector<file> files;
 
 bool compare(const file & a, const file & b) {
     if(a.name.compare(b.name) == 0) {
-        if(a.perceivedBybOs && b.perceivedBybOs) {
+        if(a.perceivedByOs && b.perceivedByOs) {
             return a.extension.compare(b.extension) < 0;
-        } else if(a.perceivedBybOs) {
+        } else if(a.perceivedByOs) {
             return true;
-        } else if(b.perceivedBybOs) {
+        } else if(b.perceivedByOs) {
             return false;
         } else{
             a.extension.compare(b.extension) < 0;
@@ -49,7 +49,10 @@ int main() {
         int index = temp.find(".");
         string name = temp.substr(0, index);
         string extension = temp.substr(index + 1);
-        files.push_back(*(new file(name, extension)));
+        file * f = new file(name, extension);
+        f->perceivedByOs = false;
+        files.push_back(*f);
+        
         extensionToPerceivedStates[extension] = false;
     }
 
@@ -62,7 +65,7 @@ int main() {
     }
 
     for(auto file: files)  {
-        file.extension = extensionToPerceivedStates[file.extension];
+        file.perceivedByOs = extensionToPerceivedStates[file.extension];
     }
     
     sort(files.begin(), files.end(), compare);
