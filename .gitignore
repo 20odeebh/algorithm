@@ -342,3 +342,6 @@ healthchecksdb
 #vs폴더 제외
 /.vs
 .vs/
+
+/algorithmProj
+algorithmProj/
