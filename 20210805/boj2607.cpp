@@ -58,7 +58,7 @@ int main() {
 		//	for (int k = 0; k < strSize; k++) {
 		//		if (now[k] != str[k])cnt2++;
 		//	}
-		//	if (cnt2 == 2)ans++;
+		//	if (cnt2 == 2)ans++;f
 		//	continue;
 		//}
 		if (strSize == nowSize && cnt == 1) {
